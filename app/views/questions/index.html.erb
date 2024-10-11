@@ -1,0 +1,17 @@
+<!-- app/views/questions/index.html.erb -->
+<div class="max-w-4xl w-full mx-auto p-6">
+
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold mb-6">All Questions</h1>
+
+    <%= button_to 'Logout', logout_path, method: :delete, class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-md mb-6" %>
+  </div>
+
+  <div class="border rounded-md divide-y flex flex-col">
+    <% @questions.each do |question| %>
+        <a href="<%= question_path(question.public_id) %>" class="p-4">
+          <%= question.content %>
+        </a>
+    <% end %>
+  </div>
+</div>

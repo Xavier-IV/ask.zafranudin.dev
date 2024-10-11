@@ -1,0 +1,22 @@
+
+<!-- app/views/anon_sessions/new.html.erb -->
+<div class="max-w-md w-full mx-auto mt-10 p-6 bg-white border rounded-md">
+  <h1 class="text-xl font-bold text-center">Enter Token to Login</h1>
+
+  <%= form_with url: anon_session_path, local: true do |f| %>
+    <div class="mb-4">
+      <%= f.label :token, "Token", class: "block text-gray-700" %>
+      <%= f.text_field :token, class: "w-full p-2 border border-gray-300 rounded-md" %>
+    </div>
+
+    <div class="flex justify-center">
+      <%= f.submit "Login", class: "bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md" %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="mt-4 text-red-500 text-center">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+</div>
