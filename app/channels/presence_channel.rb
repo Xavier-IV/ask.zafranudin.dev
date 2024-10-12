@@ -22,7 +22,7 @@ class PresenceChannel < ApplicationCable::Channel
     # Broadcast cursor position to everyone
     ActionCable.server.broadcast "presence_channel", {
       type: "cursor_position",
-      user_id: connection.uuid,
+      user_id: connection.session_id,
       x: data["x"],
       y: data["y"]
     }
@@ -31,6 +31,18 @@ class PresenceChannel < ApplicationCable::Channel
   private
 
   def connected_users_count
-    ActionCable.server.connections.count
+    unique_users = Set.new  # Using a Set to automatically handle uniqueness
+
+    ActionCable.server.connections.each do |connection|
+      user_id = connection.session_id  # Assuming you're using `uuid` for anonymous users
+      unique_users.add(user_id)
+      print("#{user_id} Connected")
+    end
+
+    Rails.logger.warn(unique_users)
+    unique_users.count  # Return the count of unique users
+
+
+    # ActionCable.server.connections.count
   end
 end

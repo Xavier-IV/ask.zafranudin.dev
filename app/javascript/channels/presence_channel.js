@@ -14,8 +14,8 @@ consumer.subscriptions.create("PresenceChannel", {
   received(data) {
     console.log(data);
     if (data.type === "user_connected" || data.type === "user_disconnected") {
-      document.getElementById("active-users-count").textContent =
-        `Active Users: ${data.count}`;
+      // document.getElementById("active-users-count").textContent =
+      // `Active Users: ${data.count}`;
     } else if (data.type === "cursor_position") {
       const cursor =
         document.getElementById(`cursor-${data.user_id}`) ||
