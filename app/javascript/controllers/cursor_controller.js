@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import consumer from "../channels/consumer"; // Import ActionCable consumer
+import consumer from "channels/consumer"; // Import ActionCable consumer
 
 // Connects to data-controller="cursor"
 export default class extends Controller {
