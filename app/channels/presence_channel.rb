@@ -39,7 +39,6 @@ class PresenceChannel < ApplicationCable::Channel
       print("#{user_id} Connected")
     end
 
-    Rails.logger.warn(unique_users)
     unique_users.count  # Return the count of unique users
 
 

@@ -1,5 +1,5 @@
 <!-- app/views/questions/index.html.erb -->
-<div class="max-w-4xl w-full mx-auto p-6">
+<div class="max-w-4xl w-full mx-auto p-6 flex flex-col gap-4">
 
   <div class="flex justify-between items-center">
     <h1 class="text-3xl font-bold mb-6">All Questions</h1>
@@ -18,4 +18,10 @@
       </a>
     <% end %>
   </div>
+
+  <% if flash[:notice] %>
+    <div class="mt-4 text-orange-400 text-center">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
 </div>
