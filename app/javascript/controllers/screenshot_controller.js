@@ -12,19 +12,26 @@ export default class extends Controller {
     this.buttonTarget.style.display = "none";
 
     // Take screenshot of the specific element
-    html2canvas(this.element).then((canvas) => {
-      console.log("canvasing");
-      this.resultTarget.innerHTML = "";
-      this.resultTarget.appendChild(canvas);
+    this.element.onselectstart = function () {
+      return false;
+    };
 
-      // Optionally trigger a download
-      const link = document.createElement("a");
-      link.download = "screenshot.png";
-      link.href = canvas.toDataURL();
-      link.click();
+    html2canvas(this.element).then(
+      (canvas) => {
+        this.resultTarget.innerHTML = "";
+        // canvas.addEventListener("selectstart", () => false);
+        this.resultTarget.appendChild(canvas);
 
-      // Show the button again after the screenshot is taken
-      this.buttonTarget.style.display = "";
-    });
+        // Optionally trigger a download
+        const link = document.createElement("a");
+        link.download = "screenshot.png";
+        link.href = canvas.toDataURL();
+        link.click();
+
+        // Show the button again after the screenshot is taken
+        this.buttonTarget.style.display = "";
+      },
+      { scale: 1.1 },
+    );
   }
 }
