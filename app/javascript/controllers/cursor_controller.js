@@ -9,7 +9,6 @@ export default class extends Controller {
     // Subscribe to the PresenceChannel
     this.subscription = consumer.subscriptions.create("PresenceChannel", {
       received: (data) => {
-        console.log(data);
         if (data.type === "cursor_position") {
           this.updateCursor(data.user_id, data.x, data.y);
         } else if (data.type === "user_disconnected") {
@@ -60,8 +59,6 @@ export default class extends Controller {
       // Append the label to the cursor
       cursor.appendChild(label);
       document.body.appendChild(cursor);
-
-      console.log(`Created cursor and label for user: ${user_id}`);
     } else if (!label) {
       // If the cursor exists but the label is missing, create the label
       label = document.createElement("div");
@@ -71,7 +68,6 @@ export default class extends Controller {
 
       // Append the label to the existing cursor
       cursor.appendChild(label);
-      console.log(`Label was missing, created label for user: ${user_id}`);
     }
 
     // Update the cursor position

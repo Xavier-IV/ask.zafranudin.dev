@@ -11,7 +11,8 @@ class HomesController < ApplicationController
       if @question.save
         redirect_to root_path, notice: "Your question has been submitted."
       else
-        render :index, status: :unprocessable_entity, content_type: "text/html"
+        redirect_to root_path, flash: { alert: @question.errors.full_messages.join(". ") }
+        # render :index, status: :unprocessable_entity, content_type: "text/html"
       end
     else
       redirect_to root_path, alert: "Failed to verify you are human."

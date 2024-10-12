@@ -3,16 +3,11 @@ import { createConsumer } from "@rails/actioncable";
 const consumer = createConsumer();
 
 consumer.subscriptions.create("PresenceChannel", {
-  connected() {
-    console.log("Connected to PresenceChannel");
-  },
+  connected() {},
 
-  disconnected() {
-    console.log("Disconnected from PresenceChannel");
-  },
+  disconnected() {},
 
   received(data) {
-    console.log(data);
     if (data.type === "user_connected" || data.type === "user_disconnected") {
       // document.getElementById("active-users-count").textContent =
       // `Active Users: ${data.count}`;

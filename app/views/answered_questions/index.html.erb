@@ -1,0 +1,20 @@
+
+<!-- app/views/questions/index.html.erb -->
+<div class="max-w-4xl w-full mx-auto p-6">
+
+  <div class="flex justify-between items-center">
+    <h1 class="text-3xl font-bold mb-6">All Answered Questions</h1>
+  </div>
+
+  <div class="border rounded-md divide-y flex flex-col mt-10">
+    <% @questions.each do |question| %>
+        <a href="<%= question_path(question.public_id) %>" class="p-4">
+          <%= question.content %>
+        </a>
+    <% end.empty? and begin %>
+      <div class="p-4 text-center text-gray-400">
+        <p>No answered question yet.<p>
+      </div>
+    <% end %>
+  </div>
+</div>

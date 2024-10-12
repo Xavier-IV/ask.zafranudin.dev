@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   delete "logout", to: "anon_sessions#destroy", as: "logout"
 
   resources :questions, only: [ :index, :show ]
+  resources :answered_questions, only: [ :index, :show ]
 end

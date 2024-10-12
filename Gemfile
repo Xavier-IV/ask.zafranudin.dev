@@ -43,6 +43,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "rails_live_reload"
 end
 
 group :development do
@@ -59,3 +61,7 @@ end
 gem "nanoid", "~> 2.0"
 
 gem "tailwindcss-rails", "~> 2.7"
+
+gem "rubocop", "~> 1.66", :groups => [:development, :test]
+
+gem "rubocop-rails", "~> 2.26", :groups => [:development, :test]
