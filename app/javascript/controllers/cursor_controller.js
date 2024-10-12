@@ -43,6 +43,7 @@ export default class extends Controller {
 
   updateCursor(user_id, x, y) {
     let cursor = document.getElementById(`cursor-${user_id}`);
+    let label = cursor ? cursor.querySelector(`#label-${user_id}`) : null;
 
     if (!cursor) {
       // Create a new cursor if one doesn't exist for this user
@@ -51,12 +52,26 @@ export default class extends Controller {
       cursor.className = "cursor";
 
       // Create a label to show the first 4 characters of the uuid
-      const label = document.createElement("div");
+      label = document.createElement("div");
+      label.id = `label-${user_id}`; // Add ID to the label
       label.className = "cursor-label";
       label.textContent = user_id.substring(0, 4);
 
+      // Append the label to the cursor
       cursor.appendChild(label);
       document.body.appendChild(cursor);
+
+      console.log(`Created cursor and label for user: ${user_id}`);
+    } else if (!label) {
+      // If the cursor exists but the label is missing, create the label
+      label = document.createElement("div");
+      label.id = `label-${user_id}`; // Add ID to the label
+      label.className = "cursor-label";
+      label.textContent = user_id.substring(0, 4);
+
+      // Append the label to the existing cursor
+      cursor.appendChild(label);
+      console.log(`Label was missing, created label for user: ${user_id}`);
     }
 
     // Update the cursor position
