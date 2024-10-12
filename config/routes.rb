@@ -7,11 +7,10 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   root "homes#index"
+  post "create_question", to: "homes#create", as: "create_question"
 
   resource :anon_session, only: [ :new, :create, :destroy ]
   delete "logout", to: "anon_sessions#destroy", as: "logout"
 
   resources :questions, only: [ :index, :show ]
-
-  post "create_question", to: "homes#create", as: "create_question"
 end
