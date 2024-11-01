@@ -62,6 +62,6 @@ gem "nanoid", "~> 2.0"
 
 gem "tailwindcss-rails", "~> 2.7"
 
-gem "rubocop", "~> 1.66", :groups => [:development, :test]
+gem "rubocop", "~> 1.68", :groups => [:development, :test]
 
 gem "rubocop-rails", "~> 2.26", :groups => [:development, :test]
