@@ -1,72 +1,57 @@
 <!-- app/views/homes/index.html.erb -->
 <div class="flex flex-col gap-4 max-w-md mx-auto mt-32 w-full text-center">
-  <p class="text-gray-400">Completely anonymous question form. Answer will be posted on my X account,
-    <a href="https://x.com/MohdZafranudin" class="text-blue-400" target="_blank">@MohdZafranudin</a></p>
-  <div
-    class="
+    <p class="text-gray-400">Completely anonymous question form. Answers will be posted on my social media accounts:
+        <a href="https://x.com/zafranudin_z" class="text-blue-400" target="_blank">Twitter</a> or
+        <a href="https://www.threads.com/@zafranudin_z" class="text-blue-400" target="_blank">Threads</a>
+    </p>
+    <div class="
       overflow-hidden w-full bg-white shadow-lg border-4 border-gray-50 rounded-3xl
       text-center flex flex-col
-    "
-  >
-    <div class="w-full py-6 px-8 bg-rose-400">
-      <h1 class="text-2xl text-white text-center">Ask me anything</h1>
-    </div>
-    <!-- Form for submitting a question -->
-    <%= form_with model: @question, url: create_question_path, local: true, 
+    ">
+        <div class="w-full py-6 px-8 bg-rose-400">
+            <h1 class="text-2xl text-white text-center">Ask me anything</h1>
+        </div>
+        <!-- Form for submitting a question -->
+        <%= form_with model: @question, url: create_question_path, local: true, 
       data: { controller: 'turnstile', turbo: false, action: 'turbo:submit-end->turnstile#resetTurnstile' },
       class: 'flex flex-col' do |f| %>
-      <div class="flex flex-col gap-4">
-        <%= f.text_area :content,
+        <div class="flex flex-col gap-4">
+            <%= f.text_area :content,
                     class:
                       "border-none focus:outline-none placeholder:text-gray-300 focus:ring-0 w-full p-6 border border-gray-300 resize-none",
                     rows: 5,
                     placeholder: "Type your question here..." %>
-      </div>
-      <!-- Cloudflare Turnstile -->
-      <div
-        class="cf-turnstile hidden"
-        data-turnstile-widget-id="main-form"
-        data-sitekey="<%= Rails.application.credentials[:turnstile_site_key] %>"
-      ></div>
+        </div>
+        <!-- Cloudflare Turnstile -->
+        <div class="cf-turnstile hidden" data-turnstile-widget-id="main-form" data-sitekey="<%= Rails.application.credentials[:turnstile_site_key] %>"></div>
 
-      <div class="flex justify-center w-full">
-        <%= f.submit "Submit",
+        <div class="flex justify-center w-full">
+            <%= f.submit "Submit",
                  class:
                    "w-full bg-black hover:bg-gray-900 hover:cursor-pointer text-white font-bold py-3 px-4" %>
-      </div>
-    <% end %>
+        </div>
+        <% end %>
 
-  </div>
+    </div>
 
-  <p class="text-gray-400 text-sm">Inspired by
-    <a
-      href="https://atifaiman.dev/ask_me?ref=ask.zafranudin."
-      class="text-blue-400"
-      target="_blank"
-    >Atif Aiman</a>
-    and
-    <a
-      href="https://zackryrosli.com/ask-me-anything?ref=ask.zafranudin.dev"
-      class="text-blue-400"
-      target="_blank"
-    >Zackry Rosli</a></p>
-  <p class="text-gray-300 text-xs italic">Pssst, if you see other users' cursor, wave around!</p>
+    <p class="text-gray-400 text-sm">Inspired by
+        <a href="https://atifaiman.dev/ask_me?ref=ask.zafranudin." class="text-blue-400" target="_blank">Atif Aiman</a>
+        and
+        <a href="https://zackryrosli.com/ask-me-anything?ref=ask.zafranudin.dev" class="text-blue-400" target="_blank">Zackry Rosli</a>
+    </p>
+    <p class="text-gray-300 text-xs italic">Pssst, if you see other users' cursor, wave around!</p>
 
-  <div
-    id="active-users-count"
-    class="text-lg font-bold mb-4"
-    data-controller="cursor"
-  ></div>
+    <div id="active-users-count" class="text-lg font-bold mb-4" data-controller="cursor"></div>
 
-  <div class="">
-    <!-- Flash message for successful submission -->
-    <% if notice.present? %>
-      <p class="text-center mt-4 text-green-500"><%= notice %></p>
-    <% end %>
-    <!-- Flash message for submission error -->
-    <% if alert.present? %>
-      <p class="text-center mt-4 text-red-500"><%= alert %></p>
-    <% end %>
-  </div>
+    <div class="">
+        <!-- Flash message for successful submission -->
+        <% if notice.present? %>
+        <p class="text-center mt-4 text-green-500"><%= notice %></p>
+        <% end %>
+        <!-- Flash message for submission error -->
+        <% if alert.present? %>
+        <p class="text-center mt-4 text-red-500"><%= alert %></p>
+        <% end %>
+    </div>
 
 </div>
